@@ -166,7 +166,7 @@ class GatlingGun
   #################
   
   def add_schedule(newsletter, details = { })
-    parameters      = {after: details[:after]}
+    parameters      = {:after => details[:after]}
     parameters[:at] = details[:at].iso8601.sub("T", " ") \
       if details[:at].respond_to? :iso8601
     if not details[:after].nil? and ( not details[:after].is_a?(Integer) or 
