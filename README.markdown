@@ -1,6 +1,8 @@
 Gatling Gun
 ===========
 
+A fork for ruby 1.8.7 compatibility!
+
 Gatling Gun is a library that helps you blast out a group of emails.  It's a
 simple wrapper over
 [SendGrid's Newsletter API](http://docs.sendgrid.com/documentation/api/newsletter-api/).
