@@ -90,6 +90,7 @@ class GatlingGun
                 else            fail ArgumentError,
                                      "details must be a Hash or Array"
                 end
+    json_data = json_data.gsub("}{", "},{")
     make_api_call("lists/email/add", :list => list, :data => json_data)
   end
   alias_method :add_emails, :add_email
