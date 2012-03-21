@@ -85,12 +85,11 @@ class GatlingGun
   
   def add_email(list, data)
     json_data = case data
-                when Hash  then data.to_json
-                when Array then data.map(&:to_json)
-                else            fail ArgumentError,
-                                     "details must be a Hash or Array"
+                  when Hash  then data.to_json
+                  when Array then data.to_json
+                  else fail ArgumentError, "details must be a Hash or Array"
                 end
-    json_data = json_data.gsub("}{", "},{")
+    
     make_api_call("lists/email/add", :list => list, :data => json_data)
   end
   alias_method :add_emails, :add_email
