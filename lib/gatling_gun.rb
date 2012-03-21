@@ -84,7 +84,7 @@ class GatlingGun
   ##############
   
   def add_email(list, data)
-    make_api_call("lists/email/add", :list => list, :data => json_data)
+    make_api_call("lists/email/add", :list => list, :data => data)
   end
   alias_method :add_emails, :add_email
   
