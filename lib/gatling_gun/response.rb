@@ -3,9 +3,9 @@ class GatlingGun
     include Enumerable
     
     def initialize(response)
-      @success            = response.code == 200
-      @http_response_code = response.code
-      @data               = parse(response.body)
+      @success            = response.code == 200 rescue false
+      @http_response_code = response.code rescue 500
+      @data               = parse(response.body) rescue response['error']
     end
     
     attr_reader :http_response_code
