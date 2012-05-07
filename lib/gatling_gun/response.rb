@@ -3,15 +3,9 @@ class GatlingGun
     include Enumerable
     
     def initialize(response)
-      if response.is_a? Hash
-        @success            = false
-        @http_response_code = nil
-        @data               = response
-      else
-        @success            = response.is_a? Net::HTTPSuccess
-        @http_response_code = response.code
-        @data               = parse(response.body)
-      end
+      @success            = response.code == 200 rescue false
+      @http_response_code = response.code rescue 500
+      @data               = parse(response.body) rescue response['error']
     end
     
     attr_reader :http_response_code

@@ -9,15 +9,9 @@ class GatlingGun
     end
     
     def response
-      url               = URI.parse("#{BASE_URL}/#{@action}.json")
-      http              = Net::HTTP.new(url.host, url.port)
-      http.use_ssl      = true
-      http.ca_file      = CA_PATH
-      http.verify_mode  = OpenSSL::SSL::VERIFY_PEER
-      http.verify_depth = 5
-      post              = Net::HTTP::Post.new(url.path)
-      post.set_form_data(@parameters)
-      Response.new(http.start { |session| session.request(post) })
+      url = URI.parse("#{BASE_URL}/#{@action}.json")
+      res = HTTParty.post("#{url}?", :query => @parameters, :format => :json)
+      Response.new(res)
     rescue Timeout::Error, Errno::EINVAL,        Errno::ECONNRESET,
            EOFError,       Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
            Net::ProtocolError => error
